@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Error } from './Error';
 
-export const Pregunta = () => {
+export const Pregunta = ({ setPresupuesto, setRestante, actualizarPregunta }) => {
 
     const [ cantidad, setCantidad ] = useState(0);
     const [error, setError] = useState(false);
@@ -22,7 +22,9 @@ export const Pregunta = () => {
 
         // * Si pasa la validación
         setError( false );
-
+        setPresupuesto( cantidad );
+        setRestante( cantidad );
+        actualizarPregunta( false );
     } 
 
     return (
