@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Error } from './Error';
 
-export const Formulario = ({ agregarNuevoGasto }) => {
+export const Formulario = ({ setGasto, setCrearGasto }) => {
 
     const [ nombre, setNombre ] = useState('');
     const [ cantidad, setCantidad ] = useState(0);
@@ -26,7 +26,8 @@ export const Formulario = ({ agregarNuevoGasto }) => {
         }
 
         // * Pasar el gasto al componente principal
-        agregarNuevoGasto( gasto );
+        setGasto( gasto );
+        setCrearGasto( true );
 
         // * Resetear el Form
         setNombre('');
@@ -58,7 +59,7 @@ export const Formulario = ({ agregarNuevoGasto }) => {
                     className="u-full-width" 
                     placeholder="Ej. 300"
                     value={ cantidad }
-                    onChange={ e => setCantidad( parseInt( e.target.value ) ) }
+                    onChange={ e => setCantidad( e.target.value ) }
                 />
             </div>
 

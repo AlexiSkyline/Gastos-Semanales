@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { ControlPresupuesto } from './components/ControlPresupuesto';
 import { Formulario } from './components/Formulario';
 import { Listado } from './components/Listado';
 import { Pregunta } from './components/Pregunta';
@@ -9,14 +10,28 @@ function App() {
   const [ restante, setRestante ] = useState(0);
   const [ mostrarpregunta, actualizarPregunta ] = useState(true);
   const [ gastos, setGastos ] = useState([]);
+  const [ gasto, setGasto ] = useState([]);
+  const [ crearGasto, setCrearGasto ] = useState(false);
 
-  // * Cuando agregamos un nuevo gasto
-  const agregarNuevoGasto = ( gasto ) => {
-    setGastos([
-      ...gastos,
-      gasto
-    ]);
-  } 
+  // * usEffect que actualiza el restante
+  useEffect( () => {
+
+      // * agregar el nuevo presupuesto
+      if( crearGasto ) {
+        setGastos([
+          ...gastos,
+             gasto
+        ]);
+
+        // * resta del presupuesto actual
+        const presupuestoRestante = restante - gasto.cantidad;
+        setRestante( presupuestoRestante );
+  
+        setCrearGasto( false );
+      
+      }
+    
+  }, [ gasto, crearGasto, gastos, restante ]);
 
   return (
     <div className="container">
@@ -38,13 +53,19 @@ function App() {
                     <div className="row">
                         <div className="one-half column">
                           <Formulario 
-                             agregarNuevoGasto={ agregarNuevoGasto }
+                             setGasto={ setGasto }
+                             setCrearGasto={ setCrearGasto }
                           />
                         </div>
       
                         <div className="one-half column">
                           <Listado 
-                            gastos={ gastos }
+                              gastos={ gastos }
+                          />
+
+                          <ControlPresupuesto 
+                              presupuesto={ presupuesto }
+                              restante={ restante }
                           />
                         </div>
                     </div>
