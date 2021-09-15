@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Proptypes from 'prop-types'; 
 import { Error } from './Error';
 
 export const Formulario = ({ setGasto, setCrearGasto }) => {
@@ -28,6 +29,7 @@ export const Formulario = ({ setGasto, setCrearGasto }) => {
         // * Pasar el gasto al componente principal
         setGasto( gasto );
         setCrearGasto( true );
+        setError( false );
 
         // * Resetear el Form
         setNombre('');
@@ -37,7 +39,7 @@ export const Formulario = ({ setGasto, setCrearGasto }) => {
     return (
         <form onSubmit={ agregarGasto }>
 
-            { error ? <Error mensaje="Ambos campos son obligatorios o el Presupuesto es Incorrecto"/> : null }
+            { error ? ( <Error mensaje = "Ambos campos son obligatorios o el Presupuesto es Incorrecto"/> ) : null }
 
             <h2>Agrega tus gastos aquí</h2>
 
@@ -70,4 +72,9 @@ export const Formulario = ({ setGasto, setCrearGasto }) => {
             />
         </form>
     );
+}
+
+Formulario.propTypes = {
+    setGasto: Proptypes.func.isRequired, 
+    setCrearGasto: Proptypes.func.isRequired
 }

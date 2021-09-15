@@ -1,4 +1,5 @@
 import React from 'react'
+import Proptypes from 'prop-types';
 
 export const Gasto = ({ gasto, eliminarGasto }) => (
     
@@ -17,3 +18,8 @@ export const Gasto = ({ gasto, eliminarGasto }) => (
     </li>
 
 );
+
+Gasto.propTypes = {
+    gasto: Proptypes.object.isRequired,
+    eliminarGasto: Proptypes.func.isRequired
+}
