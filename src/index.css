@@ -101,3 +101,15 @@ h2 {
   padding: 1rem;
   color:white;
 }
+.boton-eliminar {
+  background-color: red;
+  height: 100%;
+  margin: auto 0;
+  color: white;
+  border: none;
+  transition: all 0.5s ease-in-out;
+}
+.boton-eliminar:hover {
+  color: white;
+  background-color: rgb(190, 40, 40);
+}

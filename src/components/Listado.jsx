@@ -1,7 +1,7 @@
 import React from 'react'
 import { Gasto } from './Gasto';
 
-export const Listado = ({ gastos }) => (
+export const Listado = ({ gastos, eliminarGasto }) => (
 
     <div className="gastos-realizados">
         <h2>Listado</h2>
@@ -9,6 +9,7 @@ export const Listado = ({ gastos }) => (
             <Gasto 
                 key={ gasto.id }
                 gasto={ gasto } 
+                eliminarGasto={ eliminarGasto }
             />
         ))}
     </div>

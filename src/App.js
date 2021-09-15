@@ -33,6 +33,13 @@ function App() {
     
   }, [ gasto, crearGasto, gastos, restante ]);
 
+  const eliminarGasto = ( id, presupuesto ) => {
+      const newGatos = gastos.filter( gasto => gasto.id !== id );
+      setGastos( newGatos );
+      // * Sumo la cantidad del gasto eliminado al restante total. 
+      setRestante( restante + presupuesto );
+  }
+
   return (
     <div className="container">
 
@@ -61,6 +68,7 @@ function App() {
                         <div className="one-half column">
                           <Listado 
                               gastos={ gastos }
+                              eliminarGasto={ eliminarGasto }
                           />
 
                           <ControlPresupuesto 
